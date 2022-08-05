@@ -1,6 +1,8 @@
-﻿using System;
+﻿using LeaderBoard.Domain;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace LeaderBoard.Infrastructure
 {
@@ -12,29 +14,23 @@ namespace LeaderBoard.Infrastructure
         /// <summary>
         /// score rank list 
         /// </summary>
-        public static List<Int64> CustomerRankList = new List<Int64>();
+        public static List<CustomerScore> CustomerRankList = new List<CustomerScore>();
 
         /// <summary>
-        /// list of customerId
+        /// customer data
         /// </summary>
-        public static List<List<Int64>> CustomerIDList = new List<List<Int64>>();
+        public static Dictionary<long, CustomerScore> CustomerMap = new Dictionary<long, CustomerScore>();
 
         /// <summary>
-        /// score list
+        /// the maximum score in rank list
         /// </summary>
-        public static List<List<decimal>> ScoreList = new List<List<decimal>>();
+        public static decimal MaxScore = 0;
 
-        static CacheHandler()
-        {
-            // split customerId and score data into 11 parts
-            for (int i = 0; i < 11; i++)
-            {
-                List<Int64> IDList = new List<Int64>();
-                CustomerIDList.Add(IDList);
+        /// <summary>
+        /// the minimum score in rank list
+        /// </summary>
+        public static decimal MinScore = 0;
 
-                List<decimal> scoreList = new List<decimal>();
-                ScoreList.Add(scoreList);
-            }                        
-        }
+        public static ReaderWriterLock CustomerLock = new ReaderWriterLock();          
     }
 }

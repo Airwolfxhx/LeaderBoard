@@ -27,6 +27,7 @@ namespace LeaderBoard
         {
             services.AddScoped(typeof(ICustomerService),typeof(CustomerService));
             services.AddScoped(typeof(ILeaderBoardService), typeof(LeaderBoardService));
+            services.AddScoped(typeof(ICommonService), typeof(CommonService));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

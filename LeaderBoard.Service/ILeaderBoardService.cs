@@ -6,7 +6,7 @@ namespace LeaderBoard.Application
 {
     public interface ILeaderBoardService
     {
-        List<CustomerScore> GetCustomersByRank(int start, int end);
+        List<CustomerScoreDto> GetCustomersByRank(int start, int end);
 
         /// <summary>
         /// get the found customer and its nearest neighborhoods
@@ -15,6 +15,6 @@ namespace LeaderBoard.Application
         /// <param name="high">number of neighbors whose rank is higher than the specified customer</param>
         /// <param name="low">number of neighbors whose rank is lower than the specified customer</param>
         /// <returns></returns>
-        APIResult<List<CustomerScore>> GetCustomersByCustomerId(Int64 customerId, int high = 0, int low = 0);
+        APIResult<List<CustomerScoreDto>> GetCustomersByCustomerId(Int64 customerId, int high = 0, int low = 0);
     }
 }

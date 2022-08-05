@@ -24,7 +24,7 @@ namespace LeaderBoard.Controllers
         [HttpGet]
         public ActionResult Get(int start, int end)
         {
-            APIResult<List<CustomerScore>> result = new APIResult<List<CustomerScore>>();
+            APIResult<List<CustomerScoreDto>> result = new APIResult<List<CustomerScoreDto>>();
 
             if (start <= 0 || end <= 0)
             {
@@ -79,7 +79,7 @@ namespace LeaderBoard.Controllers
         [HttpGet("{customerId}")]
         public ActionResult<string> GetCustomersByCustomerId(Int64 customerId, int high = 0, int low = 0)
         {
-            APIResult<List<CustomerScore>> result = new APIResult<List<CustomerScore>>();
+            APIResult<List<CustomerScoreDto>> result = new APIResult<List<CustomerScoreDto>>();
 
             if (high < 0 || low < 0)
             {

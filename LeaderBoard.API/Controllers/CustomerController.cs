@@ -28,15 +28,13 @@ namespace LeaderBoard.Controllers
             {
                 int n = 10000;
                 // create test data
-                for (int i = 0; i < 500000; i++)
+                for (int i = 0; i < 50; i++)
                 {
                     Int64 customerId = n + i;
 
                     Random random = new Random();
                     decimal score = Convert.ToDecimal(Math.Round(random.NextDouble() * 1000, 2));
-
-                    if (score > 1000)
-                        score = 1000;
+                    
                     _customerService.SaveScore(customerId, score);
                 }
             }
@@ -48,12 +46,7 @@ namespace LeaderBoard.Controllers
         public ActionResult ClearData()
         {
             CacheHandler.CustomerRankList.Clear();
-
-            for (int i = 0; i < 11; i++)
-            {
-                CacheHandler.CustomerIDList[i].Clear();
-                CacheHandler.ScoreList[i].Clear();
-            }
+            CacheHandler.CustomerMap.Clear();
 
             return Ok();
         }
